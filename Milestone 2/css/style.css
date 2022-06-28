@@ -229,6 +229,17 @@ aside {
     position: relative;
 }
 
+.message:hover::after {
+    /* f078 */
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f078";
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    color: grey;
+}
+
 .received {
     background-color: white;
     align-self: flex-start;
