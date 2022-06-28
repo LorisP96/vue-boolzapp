@@ -202,3 +202,42 @@ aside {
     border-radius: 10px;
     padding-left: 10px;
 }
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.message {
+    min-height: 50px;
+    max-width: 60%;
+    min-width: 200px;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    position: relative;
+}
+
+.received {
+    background-color: white;
+    align-self: flex-start;
+}
+
+.sent {
+    background-color: rgb(213 249 186);
+    align-self: flex-end;
+}
+
+.hours {
+    position: absolute;
+    font-size: 10px;
+    bottom: 0;
+    right: 0;
+    padding: 0 5px;
+    padding-top: 10px;
+    color: grey;
+}

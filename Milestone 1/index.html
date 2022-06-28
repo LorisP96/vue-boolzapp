@@ -71,9 +71,9 @@
                 <div class="head-chat">
                     <div class="user-container">
                         <div class="user-avatar">
-                            <img src="img/avatar_1.jpg" alt="">
+                            <img :src="'img/avatar' + contacts[currentActiveUser].avatar + '.jpg'" alt="">
                         </div>
-                        <h3 class="user-name"></h3>
+                        <h3 class="user-name">{{ contacts[currentActiveUser].name }}</h3>
                     </div>
 
                     <div class="icons-container">
@@ -83,7 +83,12 @@
                     </div>
                 </div>
                 <div class="chat">
-                    <!-- 2 container, 1 per i messaggi che invio e 1 che ricevo -->
+                    <div class="messages" v-for="type in contacts[currentActiveUser].messages">
+                        <div class="message" :class="{'received' : type.status === 'received','sent' : type.status === 'sent'}">
+                             {{ type.text }}
+                            <span class="hours">{{ type.date }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="foot-chat">
                     <i class="fa-regular fa-face-smile"></i>
