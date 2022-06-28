@@ -75,7 +75,7 @@ aside {
     border-radius: 50%;
 }
 
-aside .head-chat .user-name {
+.head-chat .user-name {
     align-self: center;
     margin: 0 10px;
     text-align: center;
