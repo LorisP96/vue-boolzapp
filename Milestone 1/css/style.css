@@ -14,6 +14,11 @@ a {
     text-decoration: none;
 }
 
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
 #app {
     height: 100vh;
     width: 100%;
@@ -28,7 +33,6 @@ a {
     width: 80%;
     min-width: 800px;
     height: 90%;
-    min-height: 600px;
     display: flex;
 }
 
@@ -47,7 +51,7 @@ aside {
 }
 
 .head-chat {
-    background-color: hsl(0deg 0% 92%);
+    background-color: rgb(235 235 235);
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -114,4 +118,57 @@ aside {
 .set-alert {
     font-size: 14px;
     text-decoration: underline;
+}
+
+/* search user */
+
+.search-user-container {
+    background-color: rgb(245 245 245);
+    height: 40px;
+    padding: 5px;
+}
+
+.search-user-bar {
+    background-color: white;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 14px;
+    color: rgb(177 177 177);
+    line-height: 30px;
+}
+
+.search-user-bar i {
+    margin: 0 20px;
+}
+
+.search-user-bar > input {
+    width: 70%;
+    border: 0;
+}
+
+/* contacts list */
+
+.contacts-list {
+    height: calc(100% - 190px);
+    overflow-y: auto;
+}
+
+.contacts-list li {
+    height: 80px;
+    border-bottom: 1px solid lightgrey;
+    padding: 10px;
+}
+
+li h3 {
+    align-self: flex-start;
+}
+
+li .user-name {
+    padding: 10px;
+    text-align: start;
+}
+
+.last-seen {
+    font-size: 12px;
+    color: grey;
 }
