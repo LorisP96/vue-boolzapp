@@ -92,6 +92,19 @@ var app = new Vue({
     methods: {
         getCurrentActiveUser(index) {
             this.currentActiveUser = index;
+        },
+        getUserInput() {
+            if (this.userInputText.length > 0) {
+                this.contacts[this.currentActiveUser].messages.push(
+                    {
+                    // test
+                    date: '20/03/2020 16:30:00',
+                    text: this.userInputText,
+                    status: 'sent'
+                    }
+                );
+                this.userInputText = '';
+            }
         }
     }
 })
