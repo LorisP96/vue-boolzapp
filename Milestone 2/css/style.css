@@ -203,12 +203,13 @@ aside {
     cursor: pointer;
 }
 
-.foot-chat input {
+.foot-chat textarea {
     flex-grow: 1;
     height: 45px;
     border: 0;
     border-radius: 10px;
-    padding-left: 10px;
+    padding: 10px;
+    resize: none;
 }
 
 .messages {

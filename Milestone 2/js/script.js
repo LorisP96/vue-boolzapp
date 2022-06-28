@@ -94,12 +94,13 @@ var app = new Vue({
             this.currentActiveUser = index;
         },
         getUserInput() {
-            if (this.userInputText.length > 0) {
+            const userInputTextTrimmed = this.userInputText.trim()
+            if (userInputTextTrimmed.length > 0) {
                 this.contacts[this.currentActiveUser].messages.push(
                     {
                     // test
                     date: '20/03/2020 16:30:00',
-                    text: this.userInputText,
+                    text: userInputTextTrimmed,
                     status: 'sent'
                     }
                 );

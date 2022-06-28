@@ -92,7 +92,7 @@
                 </div>
                 <div class="foot-chat">
                     <i class="fa-regular fa-face-smile"></i>
-                    <input @keyup.enter="getUserInput()" v-model="userInputText" type="text" placeholder="Scrivi un messaggio">
+                    <textarea @keyup.enter="getUserInput()" v-model="userInputText" type="textarea" placeholder="Scrivi un messaggio"></textarea>
                     <i class="fa-solid fa-microphone"></i>
                 </div>
             </section>
