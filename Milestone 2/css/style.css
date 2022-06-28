@@ -146,6 +146,7 @@ aside {
 .search-user-bar > input {
     width: 70%;
     border: 0;
+    height: 25px;
 }
 
 /* contacts list */
