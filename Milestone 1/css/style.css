@@ -183,6 +183,7 @@ aside {
     height: calc(100% - 140px);
     background-image: url(../img/mine.jpg);
     padding: 30px 80px;
+    overflow-y: auto;
 }
 
 .foot-chat {
@@ -213,7 +214,6 @@ aside {
 .messages {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
 }
 
 .message {
