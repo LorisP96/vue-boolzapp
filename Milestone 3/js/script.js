@@ -110,13 +110,13 @@ var app = new Vue({
         },
         getUserSearch() {
             const userSearchLower = this.userSearch.toLowerCase();
-            this.contacts.forEach((element) => {
-                const elementTextLower = element.name.toLowerCase();
+            this.contacts.forEach((contact) => {
+                const elementTextLower = contact.name.toLowerCase();
 
                 if(elementTextLower.includes(userSearchLower)) {
-                    element.visible = true;
+                    contact.visible = true;
                 } else {
-                    element.visible = false;
+                    contact.visible = false;
                 }
                 console.log(userSearchLower)
             });

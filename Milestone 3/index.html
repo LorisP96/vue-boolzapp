@@ -46,7 +46,7 @@
                 <div class="search-user-container">
                     <div class="search-user-bar">
                         <a href="#" @click="getUserSearch()"><i class="fa-solid fa-magnifying-glass"></i></a>
-                        <input v-model="userSearch" type="text" placeholder="Cerca o inizia una nuova chat">
+                        <input @keyup.enter="getUserSearch()" v-model="userSearch" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
                 </div>
                 <!-- contacts -->
