@@ -172,6 +172,10 @@ aside {
     color: grey;
 }
 
+.selected {
+    background-color: rgb(233 235 234);
+}
+
 /********************         MAIN CHAT           ************************/
 
 .chat {
@@ -241,3 +245,4 @@ aside {
     padding-top: 10px;
     color: grey;
 }
+

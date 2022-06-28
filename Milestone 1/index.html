@@ -19,7 +19,7 @@
                     <!-- utente -->
                     <div class="user-container">
                         <div class="user-avatar">
-                            <img src="img/avatar_1.jpg" alt="">
+                            <img src="img/avatar_io.jpg" alt="">
                         </div>
                         <h3 class="user-name">Nome Utente</h3>
                     </div>
@@ -52,7 +52,7 @@
                 <!-- contacts -->
                 <div class="contacts-list">
                     <ul>
-                        <li v-for="contact in contacts">
+                        <li v-for="contact, index in contacts" :class="{'selected' : index === currentActiveUser}">
                             <div class="user-container">
                                 <div class="user-avatar">
                                     <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
