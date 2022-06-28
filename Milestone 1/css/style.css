@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 img {
@@ -190,6 +191,8 @@ aside {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    z-index: 1;
 }
 
 .foot-chat > i {
@@ -214,7 +217,7 @@ aside {
 }
 
 .message {
-    min-height: 50px;
+    min-height: 55px;
     max-width: 60%;
     min-width: 200px;
     border-radius: 15px;
@@ -224,6 +227,7 @@ aside {
     align-items: center;
     line-height: 20px;
     position: relative;
+    z-index: 0;
 }
 
 .received {
@@ -242,7 +246,6 @@ aside {
     bottom: 0;
     right: 0;
     padding: 0 5px;
-    padding-top: 10px;
     color: grey;
 }
 

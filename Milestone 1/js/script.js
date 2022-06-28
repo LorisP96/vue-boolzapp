@@ -87,7 +87,11 @@ var app = new Vue({
                 ],
             },
         ]
-        
+    },
+    methods: {
+        getCurrentActiveUser(index) {
+            this.currentActiveUser = index;
+        }
     }
 })
 
