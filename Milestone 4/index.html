@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="main-container">
+            <!-- ASIDE -->
+            <aside>
+                <!-- head-chat -->
+                <div class="head-chat">
+                    <!-- utente -->
+                    <div class="user-container">
+                        <div class="user-avatar">
+                            <img src="img/avatar_io.jpg" alt="">
+                        </div>
+                        <h3 class="user-name">Nome Utente</h3>
+                    </div>
+                    <!-- icone -->
+                    <div class="icons-container">
+                        <a href="#"><i class="fa-solid fa-circle-notch"></i></a>
+                        <a href="#"><i class="fa-solid fa-message"></i></a>
+                        <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                    </div>
+                </div>
+                <!-- notifications -->
+                <div class="notifications">
+                    <div class="user-container">
+                        <div class="no-alert">
+                            <i class="fa-solid fa-bell-slash"></i>
+                        </div>
+                        <div>
+                            <h5>Ricevi notifiche di nuovi messaggi</h5>
+                            <span class="set-alert">Attiva notifiche desktop.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- search-user -->
+                <div class="search-user-container">
+                    <div class="search-user-bar">
+                        <a href="#" @click="getUserSearch()"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <input @keyup.enter="getUserSearch()" v-model="userSearch" type="text" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+                </div>
+                <!-- contacts -->
+                <div class="contacts-list">
+                    <ul>
+                        <li @click="getCurrentActiveUser(index)" v-for="contact, index in contacts" :class="{'selected' : index === currentActiveUser, 'not-visible' : contact.visible === false}">
+                            <div class="user-container">
+                                <div class="user-avatar">
+                                    <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                                </div>
+                                <div class="user-name">
+                                    <h4>{{ contact.name }}</h4>
+                                    <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text }}</div>
+                                    <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+            <!-- CHAT -->
+            <section class="main-chat">
+                <!-- head chat -->
+                <div class="head-chat">
+                    <div class="user-container">
+                        <div class="user-avatar">
+                            <img :src="'img/avatar' + contacts[currentActiveUser].avatar + '.jpg'" alt="">
+                        </div>
+                        <div class="user-name">
+                            <h3>{{ contacts[currentActiveUser].name }}</h3>
+                            <div class="last-seen">{{ contacts[currentActiveUser].messages[contacts[currentActiveUser].messages.length - 1].date }}</div>
+                        </div>
+                    </div>
+
+                    <div class="icons-container">
+                        <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                        <a href="#"><i class="fa-solid fa-paperclip"></i></a>
+                        <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                    </div>
+                </div>
+                <!-- chat -->
+                <div class="chat">
+                    <div class="messages" v-for="type, index in contacts[currentActiveUser].messages">
+                        <div class="message" :class="{'received' : type.status === 'received','sent' : type.status === 'sent'}">
+                             {{ type.text }}
+                            <span class="hours">{{ type.date }}</span>
+                            <span v-on:click="type.hidden = !type.hidden" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>
+                            <!-- pop-up -->
+                            <div v-if="!type.hidden" class="pop-up">
+                                <div>Info messaggio</div>
+                                <div @click="deleteMessage(index)">Elimina messaggio</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- foot-chat -->
+                <div class="foot-chat">
+                    <i class="fa-regular fa-face-smile"></i>
+                    <textarea @keyup.enter="getUserInput()" v-model="userInputText" type="textarea" placeholder="Scrivi un messaggio"></textarea>
+                    <i class="fa-solid fa-microphone"></i>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
