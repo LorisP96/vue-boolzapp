@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style.css">
@@ -37,7 +38,7 @@
                             <i class="fa-solid fa-bell-slash"></i>
                         </div>
                         <div>
-                            <h4>Nome Utente</h4>
+                            <h5>Ricevi notifiche di nuovi messaggi</h5>
                             <span class="set-alert">Attiva notifiche desktop.</span>
                         </div>
                     </div>
@@ -59,7 +60,8 @@
                                 </div>
                                 <div class="user-name">
                                     <h4>{{ contact.name }}</h4>
-                                    <div class="last-seen">last seen 2 min ago</div>
+                                    <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text }}</div>
+                                    <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
                                 </div>
                             </div>
                         </li>
@@ -68,12 +70,16 @@
             </aside>
             <!-- CHAT -->
             <section class="main-chat">
+                <!-- head chat -->
                 <div class="head-chat">
                     <div class="user-container">
                         <div class="user-avatar">
                             <img :src="'img/avatar' + contacts[currentActiveUser].avatar + '.jpg'" alt="">
                         </div>
-                        <h3 class="user-name">{{ contacts[currentActiveUser].name }}</h3>
+                        <div class="user-name">
+                            <h3>{{ contacts[currentActiveUser].name }}</h3>
+                            <div class="last-seen">{{ contacts[currentActiveUser].messages[contacts[currentActiveUser].messages.length - 1].date }}</div>
+                        </div>
                     </div>
 
                     <div class="icons-container">
@@ -82,14 +88,22 @@
                         <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
                     </div>
                 </div>
+                <!-- chat -->
                 <div class="chat">
-                    <div class="messages" v-for="type in contacts[currentActiveUser].messages">
+                    <div class="messages" v-for="type, index in contacts[currentActiveUser].messages">
                         <div class="message" :class="{'received' : type.status === 'received','sent' : type.status === 'sent'}">
                              {{ type.text }}
                             <span class="hours">{{ type.date }}</span>
+                            <span v-on:click="type.hidden = !type.hidden" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>
+                            <!-- pop-up -->
+                            <div v-if="!type.hidden" class="pop-up">
+                                <div>Info messaggio</div>
+                                <div @click="deleteMessage(index)">Elimina messaggio</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- foot-chat -->
                 <div class="foot-chat">
                     <i class="fa-regular fa-face-smile"></i>
                     <textarea @keyup.enter="getUserInput()" v-model="userInputText" type="textarea" placeholder="Scrivi un messaggio"></textarea>
