@@ -171,6 +171,12 @@ aside .head-chat .user-name {
     text-align: start;
 }
 
+.contacts-list .user-name {
+    flex-grow: 1;
+    max-width: 60%;
+    overflow-x: hidden;
+}
+
 .last-seen {
     font-size: 12px;
     color: grey;
@@ -224,7 +230,8 @@ aside .head-chat .user-name {
     max-width: 60%;
     min-width: 200px;
     border-radius: 15px;
-    padding: 21px;
+    padding: 15px;
+    padding-bottom: 21px;
     margin-top: 10px;
     line-height: 20px;
     overflow-wrap: break-word;
@@ -253,7 +260,7 @@ aside .head-chat .user-name {
 }
 
 .contacts-list .hours {
-    top: 0;
+    top: -1px;
     bottom: auto;
 }
 
@@ -262,7 +269,7 @@ aside .head-chat .user-name {
 }
 
 .down {
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     position: absolute;
     right: 10px;

@@ -96,7 +96,7 @@
                         <div class="message" :class="{'received' : type.status === 'received','sent' : type.status === 'sent'}">
                             <span>{{ type.text }}</span>
                             <span class="hours">{{ type.date }}</span>
-                            <span v-on:click="type.hidden = !type.hidden" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>
+                            <span @click="type.hidden = !type.hidden" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>
                             <!-- pop-up -->
                             <div v-if="!type.hidden" class="pop-up">
                                 <div>Info messaggio</div>
