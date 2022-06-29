@@ -60,8 +60,10 @@
                                 </div>
                                 <div class="user-name">
                                     <h4>{{ contact.name }}</h4>
-                                    <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text }}</div>
-                                    <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
+                                    <div v-if="contact.messages.length > 0">
+                                        <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text }}</div>
+                                        <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -78,7 +80,7 @@
                         </div>
                         <div class="user-name">
                             <h3>{{ contacts[currentActiveUser].name }}</h3>
-                            <div class="last-seen">{{ contacts[currentActiveUser].messages[contacts[currentActiveUser].messages.length - 1].date }}</div>
+                            <div class="last-seen" v-if="contacts[currentActiveUser].messages.length > 0">{{ contacts[currentActiveUser].messages[contacts[currentActiveUser].messages.length - 1].date }}</div>
                         </div>
                     </div>
 
@@ -92,7 +94,7 @@
                 <div class="chat">
                     <div class="messages" v-for="type, index in contacts[currentActiveUser].messages">
                         <div class="message" :class="{'received' : type.status === 'received','sent' : type.status === 'sent'}">
-                             {{ type.text }}
+                            <span>{{ type.text }}</span>
                             <span class="hours">{{ type.date }}</span>
                             <span v-on:click="type.hidden = !type.hidden" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>
                             <!-- pop-up -->
