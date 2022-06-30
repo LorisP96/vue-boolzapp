@@ -105,6 +105,10 @@ var app = new Vue({
     methods: {
         getCurrentActiveUser(index) {
             this.currentActiveUser = index;
+            this.contacts[this.currentActiveUser].messages.forEach((element) => {
+                this.isActive = element;
+                this.isActive.hidden = true;
+            })
         },
         // milestone 3
         getUserInput() {
@@ -149,15 +153,15 @@ var app = new Vue({
             this.contacts[this.currentActiveUser].messages.splice(index, 1)
         },
         getOnlyOne(type) {
-            if(type.hidden === true) {
-                this.contacts[this.currentActiveUser].messages.forEach((element) => {
-                    this.isActive = element;
-                    this.isActive.hidden = true;
-                });
-                type.hidden = !this.isActive.hidden;
-            } else {
-                type.hidden = true;
-            }
+                if(type.hidden === true) {
+                    this.contacts[this.currentActiveUser].messages.forEach((element) => {
+                        this.isActive = element;
+                        this.isActive.hidden = true;
+                    });
+                    type.hidden = !this.isActive.hidden;
+                } else {
+                    type.hidden = true;
+                };
         }
     }
 })
