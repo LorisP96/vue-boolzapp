@@ -15,6 +15,7 @@
         <div class="main-container">
             <!-- ASIDE -->
             <aside>
+
                 <!-- head-chat -->
                 <div class="head-chat">
                     <!-- utente -->
@@ -24,6 +25,7 @@
                         </div>
                         <h3 class="user-name">Nome Utente</h3>
                     </div>
+
                     <!-- icone -->
                     <div class="icons-container">
                         <a href="#"><i class="fa-solid fa-circle-notch"></i></a>
@@ -31,18 +33,22 @@
                         <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
                     </div>
                 </div>
+
                 <!-- notifications -->
                 <div class="notifications">
                     <div class="user-container">
+                        <!-- icona notifiche -->
                         <div class="no-alert">
                             <i class="fa-solid fa-bell-slash"></i>
                         </div>
+                        <!-- info notifiche -->
                         <div>
                             <h5>Ricevi notifiche di nuovi messaggi</h5>
                             <span class="set-alert">Attiva notifiche desktop.</span>
                         </div>
                     </div>
                 </div>
+
                 <!-- search-user -->
                 <div class="search-user-container">
                     <div class="search-user-bar">
@@ -50,20 +56,26 @@
                         <input @keyup="getUserSearch()" v-model="userSearch" type="text" placeholder="Cerca o inizia una nuova chat">
                     </div>
                 </div>
-                <!-- contacts -->
+
+                <!-- contacts list-->
                 <div class="contacts-list">
                     <ul>
                         <li @click="getCurrentActiveUser(index)" v-for="contact, index in contacts" :class="{'selected' : index === currentActiveUser, 'not-visible' : contact.visible === false}">
+                            <!-- utente -->
                             <div class="user-container">
+                                <!-- avatar utente -->
                                 <div class="user-avatar">
                                     <img :src="'img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                                 </div>
+                                <!-- nome utente -->
                                 <div class="user-name">
                                     <h4>{{ contact.name }}</h4>
+                                    <!-- ultimo messaggio e ultimo accesso -->
                                     <div v-if="contact.messages.length > 0">
                                         <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text.slice(0, 30) }}...</div>
                                         <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
                                     </div>
+
                                     <div v-else class="last-seen">"Avvia una nuova conversazione"</div>
                                 </div>
                             </div>
@@ -71,33 +83,41 @@
                     </ul>
                 </div>
             </aside>
+
             <!-- CHAT -->
             <section class="main-chat">
-                <!-- head chat -->
+                <!-- header chat -->
                 <div class="head-chat">
+                    <!-- utente -->
                     <div class="user-container">
+                        <!-- avatar utente -->
                         <div class="user-avatar">
                             <img :src="'img/avatar' + contacts[currentActiveUser].avatar + '.jpg'" alt="">
                         </div>
+                        <!-- nome utente e ultimo accesso -->
                         <div class="user-name">
                             <h3>{{ contacts[currentActiveUser].name }}</h3>
                             <div class="last-seen" v-if="contacts[currentActiveUser].messages.length > 0">{{ contacts[currentActiveUser].messages[contacts[currentActiveUser].messages.length - 1].date }}</div>
                         </div>
                     </div>
-
+                    <!-- icone header chat -->
                     <div class="icons-container">
                         <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                         <a href="#"><i class="fa-solid fa-paperclip"></i></a>
                         <a href="#"><i class="fa-solid fa-ellipsis-vertical"></i></a>
                     </div>
                 </div>
+
                 <!-- chat -->
                 <div class="chat">
+                    <!-- container messaggi con ciclo -->
                     <div class="messages" v-for="type, index in contacts[currentActiveUser].messages">
+                        <!-- messaggio e classe -->
                         <div class="message" :class="{'received' : type.status === 'received','sent' : type.status === 'sent'}">
                             <span>{{ type.text }}</span>
                             <span class="hours">{{ type.date }}</span>
-                            <span @click="getOnlyOne(type)" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>
+                            <!-- hover e click chevrow -->
+                            <span @click="showPopUp(type)" class="d-none down"><i class="fa-solid fa-chevron-down"></i></span>                            
                             <!-- pop-up -->
                             <div v-if="!type.hidden" class="pop-up">
                                 <div>Info messaggio</div>
@@ -106,7 +126,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- foot-chat -->
+
+                <!-- footer chat -->
                 <div class="foot-chat">
                     <i class="fa-regular fa-face-smile"></i>
                     <textarea @keyup.enter="getUserInput()" v-model="userInputText" type="textarea" placeholder="Scrivi un messaggio"></textarea>

@@ -1,9 +1,13 @@
 var app = new Vue({
     el: '#app',
     data: {
+        // variabile per selezionare l'oggetto corrente utilizzato
         currentActiveUser: 0,
+        // input dell'utente per scrivere un messaggio in chat
         userInputText: '',
+        // input testuale per cercare un utente in lista
         userSearch: '',
+        // variabile per stabilire un reset di key (RIGA 116 e RIGA )
         isActive: null,
         contacts: [
             {
@@ -15,6 +19,7 @@ var app = new Vue({
                         date: '10/01/2020 15:30:55',
                         text: 'Hai portato a spasso il cane?',
                         status: 'sent',
+                        // aggiungo una key a tutti gli oggetti per mostrare il pop-up
                         hidden: true
                     },
                     {
@@ -103,17 +108,22 @@ var app = new Vue({
         ]
     },
     methods: {
+        // ottenere l'index attualmente attivo cliccando su un utente (html RIGA 63)
         getCurrentActiveUser(index) {
             this.currentActiveUser = index;
-            // reset chevrow
+            // reset chevrow, quando ottengo l'index di un oggetto 
+            // ogni volta che l'index correntemente attivo cambia,
+            // tutte le key 'hidden' in messages non vengono visualizzate (html RIGA 122)
             this.contacts[this.currentActiveUser].messages.forEach((element) => {
                 this.isActive = element;
                 this.isActive.hidden = true;
             })
         },
-        // milestone 3
+        // inviare un messaggio
         getUserInput() {
-            const userInputTextTrimmed = this.userInputText.trim()
+            // input con trim
+            const userInputTextTrimmed = this.userInputText.trim();
+            // se l'utente digita almeno 1 carattere push nell'array di messages 
             if (userInputTextTrimmed.length > 0) {
                 this.contacts[this.currentActiveUser].messages.push(
                     {
@@ -123,10 +133,14 @@ var app = new Vue({
                     hidden: true
                     }
                 );
+                // reset input
                 this.userInputText = '';
+                // dopo l'invio di almeno 1 carattere 
+                // imposto una funzione dopo 1 secondo (funzione successiva)
                 setTimeout(this.getAnswer, 1000);
             };
         },
+        // ottengo una risposta
         getAnswer() {
             this.contacts[this.currentActiveUser].messages.push(
                 {
@@ -137,8 +151,11 @@ var app = new Vue({
                 }
             );
         },
+        // ottengo un risultato dalla ricerca (html RIGA 55)
         getUserSearch() {
+            // imposto l'input in caratteri minuscoli per combaciare la ricerca
             const userSearchLower = this.userSearch.toLowerCase();
+            // visualizzo solo gli oggetti che hanno i caratteri del nome inclusi nella input 
             this.contacts.forEach((contact) => {
                 const elementTextLower = contact.name.toLowerCase();
 
@@ -148,14 +165,15 @@ var app = new Vue({
                     contact.visible = false;
                 }
             });
-            // this.userSearch = ''; (keyup.enter)
+            // non applico il reset this.userSearch = ''; 
+            // poichè ho usato keyup anzichè keyup.center
         },
-        deleteMessage(index) {
-            this.contacts[this.currentActiveUser].messages.splice(index, 1)
-        },
-        getOnlyOne(type) {
+        // visualizzo un pop up per click (html RIGA 120)
+        showPopUp(type) {
                 if(type.hidden === true) {
-                    // reset chevrow
+                    // reset chevrow;
+                    // ogni key 'hidden' di messages diventa true e 
+                    // non viene visualizzata prima del click (html RIGA 122)
                     this.contacts[this.currentActiveUser].messages.forEach((element) => {
                         this.isActive = element;
                         this.isActive.hidden = true;
@@ -164,7 +182,11 @@ var app = new Vue({
                 } else {
                     type.hidden = true;
                 };
-        }
+        },
+        // elimino un messaggio (html RIGA 124)
+        deleteMessage(index) {
+            this.contacts[this.currentActiveUser].messages.splice(index, 1)
+        },
     }
 })
 
