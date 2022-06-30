@@ -283,6 +283,7 @@ aside .head-chat .user-name {
 }
 
 .pop-up {
+    display: block;
     position: absolute;
     top: 50px;
     font-size: 15px;

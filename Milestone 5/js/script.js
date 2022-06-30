@@ -4,6 +4,7 @@ var app = new Vue({
         currentActiveUser: 0,
         userInputText: '',
         userSearch: '',
+        isActive: null,
         contacts: [
             {
                 name: 'Michele',
@@ -146,6 +147,17 @@ var app = new Vue({
         },
         deleteMessage(index) {
             this.contacts[this.currentActiveUser].messages.splice(index, 1)
+        },
+        getOnlyOne(type) {
+            if(type.hidden === true) {
+                this.contacts[this.currentActiveUser].messages.forEach((element) => {
+                    this.isActive = element;
+                    this.isActive.hidden = true;
+                });
+                type.hidden = !this.isActive.hidden;
+            } else {
+                type.hidden = true;
+            }
         }
     }
 })
