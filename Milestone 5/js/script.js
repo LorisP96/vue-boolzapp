@@ -19,7 +19,7 @@ var app = new Vue({
                         date: '10/01/2020 15:30:55',
                         text: 'Hai portato a spasso il cane?',
                         status: 'sent',
-                        // aggiungo una key a tutti gli oggetti per mostrare il pop-up
+                        // aggiunta di una key a tutti gli oggetti per mostrare il pop-up
                         hidden: true
                     },
                     {
@@ -111,7 +111,7 @@ var app = new Vue({
         // ottenere l'index attualmente attivo cliccando su un utente (html RIGA 63)
         getCurrentActiveUser(index) {
             this.currentActiveUser = index;
-            // reset chevrow, quando ottengo l'index di un oggetto 
+            // reset chevrow, quando si ottiene l'index di un oggetto 
             // ogni volta che l'index correntemente attivo cambia,
             // tutte le key 'hidden' in messages non vengono visualizzate (html RIGA 122)
             this.contacts[this.currentActiveUser].messages.forEach((element) => {
@@ -136,11 +136,11 @@ var app = new Vue({
                 // reset input
                 this.userInputText = '';
                 // dopo l'invio di almeno 1 carattere 
-                // imposto una funzione dopo 1 secondo (funzione successiva)
+                // impostare una funzione dopo 1 secondo (funzione successiva)
                 setTimeout(this.getAnswer, 1000);
             };
         },
-        // ottengo una risposta
+        // ottenere una risposta
         getAnswer() {
             this.contacts[this.currentActiveUser].messages.push(
                 {
@@ -151,7 +151,7 @@ var app = new Vue({
                 }
             );
         },
-        // ottengo un risultato dalla ricerca (html RIGA 55)
+        // ottenere un risultato dalla ricerca (html RIGA 55)
         getUserSearch() {
             // imposto l'input in caratteri minuscoli per combaciare la ricerca
             const userSearchLower = this.userSearch.toLowerCase();
@@ -168,7 +168,7 @@ var app = new Vue({
             // non applico il reset this.userSearch = ''; 
             // poichè ho usato keyup anzichè keyup.center
         },
-        // visualizzo un pop up per click (html RIGA 120)
+        // visualizzare un pop up per click (html RIGA 120)
         showPopUp(type) {
                 if(type.hidden === true) {
                     // reset chevrow;
@@ -183,7 +183,7 @@ var app = new Vue({
                     type.hidden = true;
                 };
         },
-        // elimino un messaggio (html RIGA 124)
+        // eliminare un messaggio (html RIGA 124)
         deleteMessage(index) {
             this.contacts[this.currentActiveUser].messages.splice(index, 1)
         },
