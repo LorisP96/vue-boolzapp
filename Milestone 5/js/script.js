@@ -105,6 +105,7 @@ var app = new Vue({
     methods: {
         getCurrentActiveUser(index) {
             this.currentActiveUser = index;
+            // reset chevrow
             this.contacts[this.currentActiveUser].messages.forEach((element) => {
                 this.isActive = element;
                 this.isActive.hidden = true;
@@ -123,8 +124,8 @@ var app = new Vue({
                     }
                 );
                 this.userInputText = '';
+                setTimeout(this.getAnswer, 1000);
             };
-            setTimeout(this.getAnswer, 1000);
         },
         getAnswer() {
             this.contacts[this.currentActiveUser].messages.push(
@@ -154,6 +155,7 @@ var app = new Vue({
         },
         getOnlyOne(type) {
                 if(type.hidden === true) {
+                    // reset chevrow
                     this.contacts[this.currentActiveUser].messages.forEach((element) => {
                         this.isActive = element;
                         this.isActive.hidden = true;

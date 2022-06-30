@@ -61,7 +61,7 @@
                                 <div class="user-name">
                                     <h4>{{ contact.name }}</h4>
                                     <div v-if="contact.messages.length > 0">
-                                        <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text }}</div>
+                                        <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text.slice(0, 30) }}...</div>
                                         <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
                                     </div>
                                     <div v-else class="last-seen">"Avvia una nuova conversazione"</div>
