@@ -7,7 +7,7 @@ var app = new Vue({
         userInputText: '',
         // input testuale per cercare un utente in lista
         userSearch: '',
-        // variabile per stabilire un reset di key (RIGA 116 e RIGA )
+        // variabile per stabilire un reset di key (js RIGA 116 e RIGA 172)
         isActive: null,
         contacts: [
             {
