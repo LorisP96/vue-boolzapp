@@ -187,6 +187,15 @@ var app = new Vue({
         deleteMessage(index) {
             this.contacts[this.currentActiveUser].messages.splice(index, 1)
         },
+        // se il messaggio è più lungo di 30 caratteri 
+        // non lo stampo completamente e aggiungo tre puntini
+        textSlice(message) {
+            if(message.length > 30) {
+                return message.slice(0, 30) + '...';
+            } else {
+                return message;
+            }
+        },
     }
 })
 

@@ -72,7 +72,7 @@
                                     <h4>{{ contact.name }}</h4>
                                     <!-- ultimo messaggio e ultimo accesso -->
                                     <div v-if="contact.messages.length > 0">
-                                        <div class="last-seen">{{ contact.messages[contact.messages.length - 1].text.slice(0, 30) }}...</div>
+                                        <div class="last-seen">{{ textSlice(contact.messages[contact.messages.length - 1].text) }}</div>
                                         <div class="hours">{{ contact.messages[contact.messages.length - 1].date }}</div>
                                     </div>
 
